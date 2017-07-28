@@ -22,6 +22,15 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func doItButtonClicked(_ sender: Any) {
+        let script = NSAppleScript(source: "tell application \"System Events\" to keystroke space using {command down}")
 
+        var errorInfo: NSDictionary?
+        _ = script?.executeAndReturnError(&errorInfo)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            NSApp.terminate(sender)
+        })
+    }
 }
 
